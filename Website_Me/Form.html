@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html> 
+<head lang = "en">
+    <meta charset = "UTF-8">
+    <title>About Me</title> 
+    <link rel = "stylesheet" href = "Form.css">
+</head>
+
+<body>
+
+        
+        <h1 class = "heading">For the Client</h1>
+        <header>
+            <nav>
+               <p><a href = "Home.html">Home</a></p> 
+                <p><a href = "Form.html">Form</a></p>
+                <p><a href = "Projects.html">Projects</a></p>
+                <p><a href = "About.html">About</a></p>
+            </nav>
+        </header>
+
+    <form id = "form">
+        <fieldset>
+        <legend>Website Planning Form</legend>
+
+        <div class = "company">
+        <h3>Company Information</h3>
+        <p>
+            <label for = "label">Company Name: </label>
+                <input type = "text" name = "label" id = "label">
+        </p>
+
+        <p>
+            <label for = "address">Company Address: </label>
+                <input type = "text" id = "address" placeholder = "Address, City, Postal Code">
+        </p>
+
+        <p>
+            <label for = "company">Detailed description about what your company does?</label><br>
+                <textarea id = "company"></textarea>
+        </p>
+
+         <p>
+            <label for = "logo">Does your company have a logo or an existing brand?: </label><br>
+                <input type = "radio" name = "yes_no" id = "logo_yes">Yes<br>
+                <input type = "radio" name = "yes_no" id = "logo_no">No
+        </p>
+        
+    </div>
+
+        <hr>
+
+        <div class = "information">
+            <h3>Information Gathering</h3>
+
+        <p>
+            <label for = "information">What information do you wish to provide online? </label><br>
+                <textarea id = "information"></textarea>
+        </p>
+
+        <p style = "display: inline;">
+            <label for = "comprises">Who comprises your audience?</label><br>
+                <textarea id = "comprises"></textarea>
+        </p>
+
+        <p>
+            <label for = "competitors">Who are your competitors?</label><br>
+                <textarea id = "competitors"></textarea>
+        </p>
+
+        <p>
+            <label for = "like">What do you like about their website? Are 
+                                    there any other websites you like?</label><br>
+                <textarea id = "like"></textarea>
+        </p>
+        </div>
+
+        <hr> 
+
+           <div class = "website">
+            <h3>Website Content</h3>
+
+        <p>
+            Do you have a color scheme preference? <br>
+            <img src = "image.jpg" alt = "schemes">
+            <img src = "image.jpg" alt = "schemes">
+            <img src = "image.jpg" alt = "schemes">
+            <img src = "image.jpg" alt = "schemes">
+        </p>
+
+        <p>
+            <label for = "aud">Who comprises your audience?</label><br>
+                <textarea id = "aud"></textarea>
+        </p>
+
+        <p>
+            <label for = "who">Who are your competitors?</label><br>
+                <textarea id = "who"></textarea>
+        </p>
+
+        <p>
+            <label for = "what">What do you like about their website? Are 
+                                    there any other websites you like?</label><br>
+                <textarea id = "what"></textarea>
+        </p>
+        </div>
+
+        <button>Submit</button>
+
+      <script>
+        const form = document.getElementById("form");   //Get the element of Id "form"
+
+        form.addEventListener("submit", (e) => {        //occurs when the submit button is clicked
+            e.preventDefault();                         //prevents the page from loading 
+
+        let formIsValid = true;                         //sets formIsValid to true 
+
+        const fields = form.querySelectorAll("input, textarea");    //fields now equal all input and textarea as a nodeList
+        fields.forEach(field => {
+            const parent = field.parentNode;                        //get the parent of each of these 
+
+        const existingError = parent.querySelector(".error_msg");   
+            
+        if (existingError)                                          //ensures errors dont build up 
+            existingError.remove();
+
+    
+        if (!field.value.trim()) {                                  //do this while there is not field value 
+            const error = document.createElement("p");              //creates an element <p>
+            error.textContent = "This field cannot be blank";       //creates the text inside <p>This field cannot be blank</p>
+            error.classList.add("error_msg");                       //adds a class name <p class = "error_msg">This field cannot be blank</p>
+            parent.appendChild(error);                              //appends to the end of the parent 
+            formIsValid = false;                                    //sets formIsValid to false 
+            }
+        });
+
+        if (formIsValid) {
+            form.submit();
+        }
+    });
+
+    </script>
+
+        </fieldset>
+    </form>
+</body>
+
+
+</html>
